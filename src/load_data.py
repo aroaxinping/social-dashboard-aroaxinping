@@ -7,9 +7,12 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 
-# Default CSV paths (local machine)
-TIKTOK_CSV = Path.home() / "Desktop/tiktok-analytics-aroaxinping/data/processed/videos_engagement.csv"
-INSTAGRAM_CSV = Path.home() / "Desktop/instagram-analytics-aroaxinping/data/processed/reels_metricas.csv"
+import os
+
+# CSV paths — override with env vars or pass directly
+# TIKTOK_CSV_PATH and INSTAGRAM_CSV_PATH env vars take priority
+TIKTOK_CSV = Path(os.environ.get("TIKTOK_CSV_PATH", "data/videos_engagement.csv"))
+INSTAGRAM_CSV = Path(os.environ.get("INSTAGRAM_CSV_PATH", "data/reels_metricas.csv"))
 
 
 def load_tiktok(path: Path = TIKTOK_CSV) -> pd.DataFrame:
